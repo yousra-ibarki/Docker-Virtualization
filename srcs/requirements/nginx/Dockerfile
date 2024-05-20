@@ -1,24 +1,19 @@
-FROM debian:bullseye
+FROM	debian:buster
 
-RUN apt update -y && \
-    apt upgrade -y && \
-    apt install nginx -y && \
-    apt install vim -y && \
-    apt install curl -y && \
-    apt install openssl -y &&\
-    apt install systemctl -y && \
-    openssl req -x509 -nodes -days 365 -newkey rsa:2048 -keyout /etc/ssl/private/nginx-selfsigned.key -out /etc/ssl/certs/nginx-selfsigned.crt -subj "/C=MO/L=KH/O=1337/OU=student/CN=yoibarki.1337.ma"
+RUN		apt-get update
+RUN		apt-get install -y nginx \
+                openssl
 
-# RUN chmod 755 /var/www/html && \
-#     chmod -R www-data:www-data /var/www/html
+RUN mkdir /etc/nginx/ssl
+RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
+       -out /etc/ssl/certs/nginx-selfsigned.crt \
+       -keyout /etc/ssl/private/nginx-selfsigned.key \
+       -subj "/C=MO/L=KH/O=1337/OU=Student/CN=yoibarki/"
 
-COPY /conf/nginx.conf /etc/nginx/
+COPY ./conf/nginx.conf /etc/nginx/conf.d
 
+RUN mkdir -p /run/nginx
 
-CMD [ "nginx", "-g", "daemon off;" ]
+EXPOSE	443
 
-#ENTRYPOINT [ "tail","-f" ]
-
-
-
-                     
+CMD ["nginx", "-g", "daemon off;"]
