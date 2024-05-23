@@ -1,4 +1,6 @@
 <?php
-// This line outputs the PHP configuration to the browser
 phpinfo();
 ?>
+
+/etc/php/7.4/fpm/pool.d/www.conf
+listen = /run/php/php7.4-fpm.sock
