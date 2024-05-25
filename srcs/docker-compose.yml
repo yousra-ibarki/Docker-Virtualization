@@ -1,6 +1,6 @@
 services:
   nginx:
-    image: nginx
+    image: nginx:latest
     build: ./requirements/nginx
     depends_on:
       - wordpress
@@ -10,18 +10,22 @@ services:
       - wordpress_data:/var/www/html
 
   mariadb:
-    image: mariadb
+    image: mariadb:latest
     build: ./requirements/mariadb
     environment:
       MYSQL_ROOT_PASSWORD: "1337"
       MYSQL_DATABASE: wordpress
       MYSQL_USER: root
       MYSQL_PASSWORD: "1337"
+    ports:
+      - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
 
   wordpress:
-    image: wordpress
+    image: wordpress:latest
+    ports: 
+      - "9000:443"
     depends_on:
       - mariadb
     build: ./requirements/wordpress

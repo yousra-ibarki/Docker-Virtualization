@@ -1,18 +1,20 @@
 FROM debian:bullseye
 
-RUN apt update -y && \
+RUN apt update -y &&\
     apt upgrade -y && \
-    apt install mariadb-server -y && \
     apt install vim -y && \
-    apt install sudo -y && \
-    #ex +'30s/.*/bind-address = 0.0.0.0/' -cwq /etc/mysql/mariadb.conf.d/50-server.cnf
-    # service mysql start
+    apt install mariadb-server -y
+    
+    # RUN ex +'30s/.*/bind-address = 0.0.0.0/' -cwq /etc/mysql/mariadb.conf.d/50-server.cnf
+    
+    # EXPOSE 3306
+    
+COPY ./conf/creatDB.sh /creatDB.sh
+    
+RUN chmod +x /creatDB.sh
+
+ENTRYPOINT ["./creatDB.sh"]
+ 
 
 
-#  CMD /usr/bin/mysqld_safe
-
-# createDb.sh is a script that create a database and a user 
-#COPY ./conf/creatDb.sh /creatDb.sh
-
-#ENTRYPOINT ["/bin/bash", "creatDb.sh"]; 
-ENTRYPOINT [ "tail", "-f" ]
+#/var/lib/mysql/aria_log_control' 

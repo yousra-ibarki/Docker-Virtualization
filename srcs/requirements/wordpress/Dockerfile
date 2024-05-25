@@ -20,5 +20,5 @@ CMD ["/bin/bash", "script.sh"]
 
 
 #installing docker compose 
-#
+# 
 # curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(Darwin-x86_64)-$(Darwin-x86_64)" -o /usr/local/bin/docker-compose
