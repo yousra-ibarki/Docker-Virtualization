@@ -8,19 +8,26 @@ services:
       - "443:443"
     volumes:
       - wordpress_data:/var/www/html
+    networks:
+      - frontend
+      - backend
 
   mariadb:
     image: mariadb:latest
     build: ./requirements/mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: "1337"
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: root
-      MYSQL_PASSWORD: "1337"
+    env_file:
+      - .env
+    # environment:
+    #   MYSQL_ROOT_PASSWORD: "1337"
+    #   MYSQL_DATABASE: wordpress
+    #   MYSQL_USER: root
+    #   MYSQL_PASSWORD: "1337"
     ports:
       - "3306:3306"
     volumes:
       - mariadb_data:/var/lib/mysql
+    networks:
+      - backend
 
   wordpress:
     image: wordpress:latest
@@ -29,17 +36,23 @@ services:
     depends_on:
       - mariadb
     build: ./requirements/wordpress
-    environment:
-      WORDPRESS_DB_NAME: wordpress
-      WORDPRESS_DB_HOST: mariadb
-      WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: "1337"
+    env_file:
+      - .env
+    # environment:
+    #   WORDPRESS_DB_NAME: wordpress
+    #   WORDPRESS_DB_HOST: mariadb
+    #   WORDPRESS_DB_USER: root
+    #   WORDPRESS_DB_PASSWORD: "1337"
     volumes:
       - wordpress_data:/var/www/html
-
-# networks:
+    networks:
+      - backend
   
 
 volumes:
   wordpress_data:
   mariadb_data:
+
+networks:
+  frontend:
+  backend:
