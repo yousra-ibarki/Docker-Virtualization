@@ -7,13 +7,13 @@ RUN apt update -y &&\
     
     # RUN ex +'30s/.*/bind-address = 0.0.0.0/' -cwq /etc/mysql/mariadb.conf.d/50-server.cnf
     
-    # EXPOSE 3306
+EXPOSE 3306
     
-COPY ./conf/creatDB.sh /creatDB.sh
+COPY ./conf/creatDb.sh /
     
-RUN chmod +x /creatDB.sh
+RUN chmod +x /creatDb.sh
 
-ENTRYPOINT ["./creatDB.sh"]
+ENTRYPOINT ["./creatDb.sh"]
  
 
 

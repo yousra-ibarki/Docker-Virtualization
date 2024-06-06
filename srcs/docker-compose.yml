@@ -37,6 +37,9 @@ services:
     volumes:
       - wordpress_data:/var/www/html
 
+# networks:
+  
+
 volumes:
   wordpress_data:
   mariadb_data:

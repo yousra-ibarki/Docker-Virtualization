@@ -11,13 +11,16 @@ RUN apt update -y && \
     apt install vim -y && \
     apt install iputils-ping -y
 
-# RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp \
-#     && chmod +x /usr/local/bin/wp
+RUN curl https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar -o /usr/local/bin/wp \
+    && chmod +x /usr/local/bin/wp
+
 
 
 COPY /tools/script.sh /
 
 RUN chmod +x /script.sh
+
+EXPOSE 9000
 
 CMD ["./script.sh"]
 # ENTRYPOINT [ "tail","-f" ]
