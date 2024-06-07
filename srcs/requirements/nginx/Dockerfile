@@ -10,9 +10,12 @@ RUN openssl req -newkey rsa:4096 -x509 -sha256 -days 365 -nodes \
        -keyout /etc/ssl/private/nginx-selfsigned.key \
        -subj "/C=MO/L=KH/O=1337/OU=Student/CN=yoibarki/"
 
-COPY ./conf/nginx.conf /etc/nginx/conf.d
+COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 
-RUN mkdir -p /run/nginx
+RUN mkdir -p /var/www/wordpress
+
+RUN chown -R www-data:www-data /var/www/wordpress
+# RUN mkdir -p /run/nginx
 
 EXPOSE	443
 
