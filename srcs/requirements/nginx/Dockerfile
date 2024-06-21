@@ -15,7 +15,7 @@ COPY ./conf/nginx.conf /etc/nginx/nginx.conf
 RUN mkdir -p /var/www/wordpress
 
 RUN chown -R www-data:www-data /var/www/wordpress
-# RUN mkdir -p /run/nginx
+RUN mkdir -p /run/nginx
 
 EXPOSE	443
 

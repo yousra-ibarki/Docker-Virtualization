@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   nginx:
-    image: nginx:latest
+    image: nginx:nginx
     build: ./requirements/nginx
     depends_on:
       - wordpress
@@ -15,20 +15,19 @@ services:
     restart: always
 
   mariadb:
-    image: mariadb:latest
+    image: mariadb:mariadb
     build: ./requirements/mariadb
-    env_file:
+    env_file: 
       - .env
-    ports:
-      - "3306:3306"
     volumes:
       - mariadb:/var/lib/mysql
     networks:
       - inception
+  
     restart: always
 
   wordpress:
-    image: wordpress:latest
+    image: wordpress:wordpress
     depends_on:
       - mariadb
     build: ./requirements/wordpress
@@ -40,18 +39,20 @@ services:
       - inception
     restart: always
 
+
 volumes:
   wordpress:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/yoibarki/data/wordpress
-
   mariadb:
-    driver: local
-    driver_opts:
-      type: none
-      device: /home/yoibarki/data/mariadb
 
 networks:
   inception:
+  
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   device: /home/yoibarki/data/wordpress
+
+    # driver: local
+    # driver_opts:
+    #   type: none
+    #   device: /home/yoibarki/data/mariadb
