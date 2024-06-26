@@ -4,8 +4,8 @@ services:
   nginx:
     image: nginx:nginx
     build: ./requirements/nginx
-    # depends_on:
-    #   - wordpress
+    depends_on:
+      - wordpress
     ports:
       - "443:443"
     volumes:
@@ -14,43 +14,43 @@ services:
       - inception
     restart: always
 
-  # mariadb:
-  #   image: mariadb:mariadb
-  #   build: ./requirements/mariadb
-  #   env_file: 
-  #     - .env
-  #   volumes:
-  #     - mariadb:/var/lib/mysql
-  #   networks:
-  #     - inception
+  mariadb:
+    image: mariadb:mariadb
+    build: ./requirements/mariadb
+    env_file: 
+      - .env
+    volumes:
+      - mariadb:/var/lib/mysql
+    networks:
+      - inception
   
-  #   restart: always
+    restart: always
 
-  # wordpress:
-  #   image: wordpress:wordpress
-  #   depends_on:
-  #     - mariadb
-  #   build: ./requirements/wordpress
-  #   env_file:
-  #     - .env
-  #   volumes:
-  #     - wordpress:/var/www/wordpress
-  #   networks:
-  #     - inception
-  #   restart: always
+  wordpress:
+    image: wordpress:wordpress
+    depends_on:
+      - mariadb
+    build: ./requirements/wordpress
+    env_file:
+      - .env
+    volumes:
+      - wordpress:/var/www/wordpress
+    networks:
+      - inception
+    restart: always
 
 
 volumes:
   wordpress:
-    driver: local
     driver_opts:
       type: none
+      o: bind
       device: /home/yoibarki/data/wordpress
   mariadb:
-    driver: local
     driver_opts:
       type: none
-      device: /home/yoibarki/data/maridb
+      o: bind
+      device: /home/yoibarki/data/mariadb
 
 networks:
   inception:
