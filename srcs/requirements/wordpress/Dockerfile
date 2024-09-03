@@ -4,9 +4,9 @@ RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install wget -y && \
     apt-get install curl -y && \
-    apt-get install php-fpm -y && \
+    # apt-get install php7.4 -y && \
     apt-get install php7.4-fpm -y && \
-    apt-get install php-mysql -y && \
+    apt-get install php7.4-mysql -y && \
     apt-get install mariadb-client -y && \
     apt install iputils-ping -y
 				

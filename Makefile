@@ -20,5 +20,10 @@ start :
 build :
 	docker compose -f ./srcs/docker-compose.yml build
 
+flcean:
+	docker system prune -a --volumes -f 
+
 status : 
 	docker ps
+
+re: flcean all

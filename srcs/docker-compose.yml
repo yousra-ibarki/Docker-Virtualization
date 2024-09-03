@@ -1,4 +1,3 @@
-version: '3.7'
 
 services:
   nginx:
@@ -40,17 +39,10 @@ services:
     restart: always
 
 
+
 volumes:
-  wordpress:
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/yoibarki/data/wordpress
-  mariadb:
-    driver_opts:
-      type: none
-      o: bind
-      device: /home/yoibarki/data/mariadb
+  wordpress: {}
+  mariadb: {}
 
 networks:
   inception:
