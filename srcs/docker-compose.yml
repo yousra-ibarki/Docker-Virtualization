@@ -38,12 +38,20 @@ services:
       - inception
     restart: always
 
-
-
-volumes:
-  wordpress: {}
-  mariadb: {}
-
 networks:
   inception:
      
+
+volumes:
+  wordpress:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yoibarki/data/wordpress
+  mariadb:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /home/yoibarki/data/maridb
