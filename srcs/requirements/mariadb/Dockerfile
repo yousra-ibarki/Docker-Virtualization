@@ -5,11 +5,11 @@ RUN apt update -y &&\
     apt install mariadb-server -y
 
     
-COPY ./conf/creatDb.sh /
+COPY ./conf/createDb.sh /
 
-RUN chmod +x /creatDb.sh
+RUN chmod +x /createDb.sh
 
 EXPOSE 3306
     
-ENTRYPOINT ["./creatDb.sh"]
+ENTRYPOINT ["./createDb.sh"]
  

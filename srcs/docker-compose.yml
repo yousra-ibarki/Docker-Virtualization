@@ -54,4 +54,4 @@ volumes:
     driver_opts:
       type: none
       o: bind
-      device: /home/yoibarki/data/maridb
+      device: /home/yoibarki/data/mariadb
