@@ -12,7 +12,7 @@ chmod -R 755 /var/www/wordpress/
 chown -R www-data:www-data /var/www/wordpress
 
 cd /var/www/wordpress
-
+sleep 4
 wp core download --allow-root
 
 wp core config --dbhost=mariadb:3306 --dbname="$MYSQL_DB" --dbuser="$MYSQL_USER" --dbpass="$MYSQL_PASSWORD" --allow-root

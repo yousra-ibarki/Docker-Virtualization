@@ -18,12 +18,7 @@ start :
 	docker compose -f ./srcs/docker-compose.yml start
 
 build :
-	docker compose -f ./srcs/docker-compose.yml build
-
-fclean:
-	docker system prune -a --volumes -f 
+	docker compose -f ./srcs/docker-compose.yml build 
 
 status : 
 	docker ps
-
-re: fclean all
