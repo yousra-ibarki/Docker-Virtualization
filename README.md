@@ -65,7 +65,7 @@ Follow these steps to set up the project locally:
 - **/python**: Python scripts for automation and other tasks.
 
 
-## Resources
+## Resource
 
 To understand more about the project and the technologies used, check out the following resources:
 
